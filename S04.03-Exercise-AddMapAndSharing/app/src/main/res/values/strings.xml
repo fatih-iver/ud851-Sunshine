@@ -132,6 +132,9 @@
 
     <string name="condition_unknown">Unknown (<xliff:g id="conditionId">%1$d</xliff:g>)</string>
 
+    <string name="action_map">Map</string>
+    <string name="action_share">Share</string>
+
 
     <!-- - - - - - - - - - - -->
     <!-- Used by NetworkUtils-->
