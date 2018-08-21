@@ -22,10 +22,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.sunshine.utilities.SunshineDateUtils;
 import com.example.android.sunshine.utilities.SunshineWeatherUtils;
+
+import org.w3c.dom.Text;
 
 /**
  * {@link ForecastAdapter} exposes a list of weather forecasts
@@ -107,29 +110,28 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
     public void onBindViewHolder(ForecastAdapterViewHolder forecastAdapterViewHolder, int position) {
         mCursor.moveToPosition(position);
 
-//      TODO (7) Replace the single TextView with Views to display all of the weather info
-
-        /*******************
-         * Weather Summary *
-         *******************/
-         /* Read date from the cursor */
-        long dateInMillis = mCursor.getLong(MainActivity.INDEX_WEATHER_DATE);
-         /* Get human readable string using our utility method */
-        String dateString = SunshineDateUtils.getFriendlyDateString(mContext, dateInMillis, false);
-         /* Use the weatherId to obtain the proper description */
         int weatherId = mCursor.getInt(MainActivity.INDEX_WEATHER_CONDITION_ID);
+        int weatherImageId = SunshineWeatherUtils.getSmallArtResourceIdForWeatherCondition(weatherId);
+
         String description = SunshineWeatherUtils.getStringForWeatherCondition(mContext, weatherId);
-         /* Read high temperature from the cursor (in degrees celsius) */
+        String contentDescription = mContext.getString(R.string.a11y_forecast, description);
+
+
         double highInCelsius = mCursor.getDouble(MainActivity.INDEX_WEATHER_MAX_TEMP);
-         /* Read low temperature from the cursor (in degrees celsius) */
         double lowInCelsius = mCursor.getDouble(MainActivity.INDEX_WEATHER_MIN_TEMP);
 
-        String highAndLowTemperature =
-                SunshineWeatherUtils.formatHighLows(mContext, highInCelsius, lowInCelsius);
+        String highTemp = SunshineWeatherUtils.formatTemperature(mContext, highInCelsius);
+        String lowTemp = SunshineWeatherUtils.formatTemperature(mContext, lowInCelsius);
 
-        String weatherSummary = dateString + " - " + description + " - " + highAndLowTemperature;
+        forecastAdapterViewHolder.mWeatherDetail.setText(description);
+        forecastAdapterViewHolder.mWeatherDetailIcon.setContentDescription(contentDescription);
+        forecastAdapterViewHolder.mMaxTemp.setText(highTemp);
+        forecastAdapterViewHolder.mMinTemp.setText(lowTemp);
+        forecastAdapterViewHolder.mWeatherDetailIcon.setImageResource(weatherImageId);
 
-        forecastAdapterViewHolder.weatherSummary.setText(weatherSummary);
+
+
+
     }
 
     /**
@@ -163,16 +165,19 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
      * OnClickListener, since it has access to the adapter and the views.
      */
     class ForecastAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-//      TODO (4) Replace the weatherSummary TextView with individual weather detail TextViews
-        final TextView weatherSummary;
 
-//      TODO (5) Add an ImageView for the weather icon
+        final ImageView mWeatherDetailIcon;
+        final TextView mWeatherDetail;
+        final TextView mMaxTemp;
+        final TextView mMinTemp;
 
         ForecastAdapterViewHolder(View view) {
             super(view);
 
-//          TODO (6) Get references to all new views and delete this line
-            weatherSummary = (TextView) view.findViewById(R.id.tv_weather_data);
+            mWeatherDetailIcon = (ImageView) view.findViewById(R.id.imageViewWeatherIcon);
+            mWeatherDetail = (TextView) view.findViewById(R.id.textViewWeatherDetail);
+            mMaxTemp = (TextView) view.findViewById(R.id.textViewMaxTemp);
+            mMinTemp = (TextView) view.findViewById(R.id.textViewMinTemp);
 
             view.setOnClickListener(this);
         }
