@@ -22,9 +22,7 @@
   - In order to use Android's data binding capabilities, (to avoid having to type findViewById   -
   - over and over again) we wrap this layout in a <layout></layout> tag.                         -
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!-- TODO (14) Color the description, high temperature, and low temperature appropriately -->
-<!-- TODO (15) Replace dimension values with @dimen resources -->
-<!-- TODO (16) Use sans-serif-light font family for the temperature TextViews -->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
@@ -59,7 +57,7 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="@dimen/forecast_detail_vertical_padding"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/weather_icon"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -110,7 +108,9 @@
             app:layout_constraintLeft_toLeftOf="@+id/horizontal_middle"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/weather_icon"
-            tools:text="19\u00b0"/>
+            tools:text="19\u00b0"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-light"/>
 
         <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
          - Low temperature for today                                                             -
@@ -129,7 +129,9 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/weather_description"
             app:layout_constraintLeft_toLeftOf="@+id/high_temperature"
             app:layout_constraintRight_toRightOf="@+id/high_temperature"
-            tools:text="10\u00b0"/>
+            tools:text="10\u00b0"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-light"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>

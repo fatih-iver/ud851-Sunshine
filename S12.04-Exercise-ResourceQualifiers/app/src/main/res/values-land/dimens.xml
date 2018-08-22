@@ -16,10 +16,11 @@
 -->
 
 
+
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="forecast_detail_horizontal_padding">32dp</dimen>
-    <dimen name="forecast_detail_vertical_padding">16dp</dimen>
+    <dimen name="forecast_detail_horizontal_padding">16dp</dimen>
+    <dimen name="forecast_detail_vertical_padding">44d</dimen>
 
     <!-- Icon Sizes -->
     <dimen name="today_icon">96dp</dimen>

@@ -15,11 +15,10 @@
      limitations under the License.
 -->
 
-
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="forecast_detail_horizontal_padding">32dp</dimen>
-    <dimen name="forecast_detail_vertical_padding">16dp</dimen>
+    <dimen name="forecast_detail_vertical_padding">24dp</dimen>
 
     <!-- Icon Sizes -->
     <dimen name="today_icon">96dp</dimen>
@@ -34,10 +33,10 @@
 
     <!-- We will eventually use this to allow us to add additional padding for different screen
          sizes-->
-    <dimen name="today_forecast_list_item_vertical_padding">16dp</dimen>
+    <dimen name="today_forecast_list_item_vertical_padding">24dp</dimen>
     <dimen name="list_item_icon_margin_right">24dp</dimen>
     <dimen name="list_item_icon_margin_end">@dimen/list_item_icon_margin_right</dimen>
-    <dimen name="list_item_padding_horizontal">16dp</dimen>
+    <dimen name="list_item_padding_horizontal">24dp</dimen>
     <dimen name="loading_indicator_size">42dp</dimen>
     <dimen name="list_item_high_temperature_margin">12dp</dimen>
     <dimen name="list_item_padding_vertical">12dp</dimen>
